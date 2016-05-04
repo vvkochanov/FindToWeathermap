@@ -1,16 +1,32 @@
 // ==UserScript==
 // @name         Find elems in Weathermap
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
+// @version      0.2
+// @description  The script finds elements of Weathermap
 // @author       Vavan 2(va)n
-// @match       */cacti/plugins/weathermap/*
-// @grant        none
+// @include     http://*/cacti/plugins/weathermap/*
+// @match       http://10.40.254.133/cacti/plugins/weathermap/*
+// @match       http://10.40.254.159/cacti/plugins/weathermap/*
+// @match       http://10.40.254.154/cacti/plugins/weathermap/*
+// @require     https://yastatic.net/jquery/2.2.3/jquery.min.js
 // ==/UserScript==
 
 (function(window, undefined) {
     'use strict';
-// Common function that returnes coordinates by text param area.coords
+    var jQueryVer = "";
+    try {
+        jQueryVer = $().jquery;
+    }
+    catch(err) {
+        console.log("jQuery not found");
+        // add support of jQuery to web-page
+        var head = document.getElementsByTagName('head')[0];
+        var script= document.createElement('script');
+        script.type= 'text/javascript';
+        script.src= 'http://code.jquery.com/jquery-latest.js';
+        head.appendChild(script);
+    }
+    // Common function that returnes coordinates by text param area.coords
     function getCoord(sType, sCoords){
         var sRes;
         var aRes = sCoords.match(/(\d+),\s*(\d+),\s*(\d+),\s*(\d+)/);
@@ -33,7 +49,7 @@
     }
 
 try {
-// 
+//
     var span = document.createElement("span");
     span.id = "usr_span";
     span.innerHTML = "<button id = 'usr_btn'>>";
@@ -77,8 +93,9 @@ try {
                 break;
             }
         }
-        span.removeChild(input);
-        span.removeChild(sendBtn);
+        // span.removeChild(input);
+        // span.removeChild(sendBtn);
+        $(span).empty();
     });
 
     input.addEventListener("keydown", function(e) {
@@ -88,9 +105,10 @@ try {
         }
     });
 
-    var mdiv = document.getElementById("tabs");
-    mdiv.appendChild(span);
-
+    // var mdiv = document.getElementById("tabs");
+    var mdiv = $("#tabs");
+    // mdiv.appendChild(span);
+    $("#tabs").append(span); // добавление элемента span с помощью jQuery
     var btn = document.getElementById("usr_btn");
     btn.addEventListener("click", function() {
         console.log("Кнопка нажата.");
