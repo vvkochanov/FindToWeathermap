@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Find elems in Weathermap
-// @namespace    http://tampermonkey.net/
-// @version      0.2
+// @namespace    https://github.com/vvkochanov/FindToWeathermap
+// @version      0.3
 // @description  The script finds elements of Weathermap
 // @author       Vavan 2(va)n
 // @include     http://*/cacti/plugins/weathermap/*
@@ -13,6 +13,7 @@
 
 (function(window, undefined) {
     'use strict';
+    // проверка на наличие jQuery
     var jQueryVer = "";
     try {
         jQueryVer = $().jquery;
