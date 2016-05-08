@@ -19,7 +19,7 @@
         jQueryVer = $().jquery;
     }
     catch(err) {
-        console.log("jQuery not found");
+        console.log("jQuery not found." + err);
         // add support of jQuery to web-page
         var head = document.getElementsByTagName('head')[0];
         var script= document.createElement('script');
@@ -67,7 +67,7 @@ try {
     selDiv.id = "selDiv";
     selDiv.style.border = "solid " + brdr.toString() + "px red";
     selDiv.style.position = "absolute";
-    console.log(selDiv);
+    //console.log(selDiv);
 
     var sendBtn = document.createElement("input");
     sendBtn.id = "user_send";
