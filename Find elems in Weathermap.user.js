@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Find elems in Weathermap
 // @namespace    https://github.com/vvkochanov/FindToWeathermap
-// @version      0.4
+// @version      0.5
 // @description  The script finds elements of Weathermap
 // @author       Vavan 2(va)n
 // @include     http://*/cacti/plugins/weathermap/*
@@ -86,7 +86,7 @@ function main(window, undefined){
                     selDiv.style.height = getCoord("height", areas[i].coords) + "px";
                     console.log(selDiv);
                     wmImg.parentNode.appendChild(selDiv);
-                    selDiv.focus();
+                    areas[i].focus();
                     break;
                 }
             }
